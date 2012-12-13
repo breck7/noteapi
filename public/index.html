@@ -1,0 +1,134 @@
+<!doctype>
+<html>
+  <head>
+    <script type="text/javascript" src="jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="note.min.js"></script>
+    <script type="text/javascript">
+    var companies = new Note()
+    var requests = new Note()
+    
+    var loadRequest = function (id) {
+      var request = requests[id]
+      $('#company').val(request.company)
+      $('#company').trigger('change')
+      $('#api').val(request.api)
+      $('#request').val(request.request)
+      $('#response').text(request.response)
+    }
+    
+    $(document).ready(function() {
+      
+      $.get('/companies', {}, function (data) {
+        companies = new Note(data)
+        for (var company in companies.names()) {
+          var option = '<option value="' + company + '">' + company + '</option>'
+          $('#company').append(option)
+        }
+        $('#company').trigger('change')
+      })
+      
+      
+      $('#company').on('change', function () {
+        var company = $(this).val()
+        $('#api').html('')
+        
+        for (var api in companies[company].names()) {
+          var option = '<option value="' + api + '">' + api + '</option>'
+          $('#api').append(option)
+        }
+        $('#api').trigger('change')
+      })
+      
+      $('#api').on('change', function () {
+        var company = $('#company').val()
+        var api = $(this).val()
+        $('#request').val(companies[company][api].toString())
+      })
+      
+      
+      $('#postButton').on('click', function () {
+        var request = new Note()
+        request.company = $('#company').val()
+        request.api = $('#api').val()
+        request.request = new Note($('#request').val())
+        $.post('/', { note : request.toString()}, function (data) {
+          request.response = new Note(data)
+          var id = requests.length()
+          requests[id] = request
+          
+          $('#response').text(data)
+          
+          
+          $('#history').append('<div class="request" onclick="loadRequest(' + id + ')">' + id + '</div>')
+          
+        })
+      })
+      
+    })
+    </script>
+    <style> /* #fff #ccc #999 #555 #222 */
+    body {
+      color: #222;
+      font-family: Arial;
+    }
+    #container {
+      width: 800px;
+      margin: 0px auto;
+    }
+    #response {
+      width: 790px;
+      height: 300px;
+      border: 1px solid #ccc;
+      overflow-y: scroll;
+      margin: 0;
+      padding: 5px;
+    }
+    #company, #api {
+      width: 100%;
+      height: 24px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      font-family: monospace;
+      padding: 10px;
+    }
+    #request {
+      width: 100%;
+      height: 200px;
+      border: 1px solid #ccc;
+      font-family: monospace;
+      font-size: 16px;
+      padding: 10px;
+    }
+    #postButton {
+      float: right;
+    }
+    #history {
+      width: 100%;
+    }
+    .request {
+      background-color: #ECECEB;
+      color: #666;
+      background-image: url(/page_fold.png);
+      background-position: right top;
+      background-repeat: no-repeat;
+      font-family: monospace;
+      float: left;
+      width: 50px;
+      height: 75px;
+      margin-top: 5px;
+      margin-right: 5px;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1>NoteAPI</h1>
+      <p>APIs made simple.<a href="https://github.com/breck7/note" style="float: right;">Powered by Note</a></p>
+      <select id="company" placeholder="Company"></select>
+      <select id="api" placeholder="API"></select>
+      <textarea id="request" placeholder="Note"></textarea>
+      <button id="postButton">Post</button>
+      <pre id="response"></pre>
+      <div id="history"></div>
+  </body>
+</html>

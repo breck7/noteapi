@@ -1,0 +1,19 @@
+{
+  "name": "noteapi",
+  "version": "0.0.1",
+  "main" : "./noteapi.js",
+  "description" : "Note interfaces to existing JSON APIs",
+  "repository": "git://github.com/breck7/noteapi",
+  "dependencies": {
+    "note": "1.0.0",
+    "express": "3.0.0",
+    "request": "2.0.0"
+  },
+  "keywords": [
+    "note",
+    "nudge",
+    "json"
+  ],
+  "author" : "Breck Yunits",
+  "license" : "MIT"
+}

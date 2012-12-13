@@ -1,0 +1,5 @@
+search
+ query blue angels
+ results_per_page 5
+ include_entities true
+ result_type mixed
