@@ -59,7 +59,7 @@
           $('#response').text(data)
           
           
-          $('#history').append('<div class="request" onclick="loadRequest(' + id + ')">' + id + '</div>')
+          $('#history').append('<div class="complete" onclick="loadRequest(' + id + ')">' + id + '</div>')
           
         })
       })
@@ -67,69 +67,121 @@
     })
     </script>
     <style> /* #fff #ccc #999 #555 #222 */
+    @font-face {
+      font-family: 'ProximaNovaRgRegular';
+      src: url('/ProximaNova-Reg-webfont.eot');
+      src: url('/ProximaNova-Reg-webfont.eot?#iefix') format('embedded-opentype'),
+           url('/ProximaNova-Reg-webfont.woff') format('woff'),
+           url('/ProximaNova-Reg-webfont.ttf') format('truetype'),
+           url('/ProximaNova-Reg-webfont.svg#ProximaNovaRgRegular') format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'ProximaNovaRgRegular';
+      src: url('/ProximaNova-Bold-webfont.eot');
+      src: url('/ProximaNova-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+           url('/ProximaNova-Bold-webfont.woff') format('woff'),
+           url('/ProximaNova-Bold-webfont.ttf') format('truetype'),
+           url('/ProximaNova-Bold-webfont.svg#ProximaNovaRgRegular') format('svg');
+      font-weight: bold;
+      font-style: normal;
+    }
     body {
       color: #222;
-      font-family: Arial;
+      font-family: 'ProximaNovaRgRegular';
     }
     #container {
-      width: 800px;
+      min-width: 420px;
+      max-width: 1000px;
       margin: 0px auto;
     }
-    #response {
-      width: 790px;
+    #request, #response {
+      width: 100%;
       height: 300px;
       border: 1px solid #ccc;
+      font-size: 16px;
+      padding: 5px;
+      font-family: 'ProximaNovaRgRegular';
       overflow-y: scroll;
       margin: 0;
+      box-sizing: border-box;
+    }
+    #left_column, #right_column {
+      min-width: 300px;
+      width: 50%;
+      float: left;
       padding: 5px;
-    }
-    #company, #example {
-      width: 100%;
-      height: 24px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-      font-family: monospace;
-      padding: 10px;
-    }
-    #request {
-      width: 100%;
-      height: 200px;
-      border: 1px solid #ccc;
-      font-family: monospace;
-      font-size: 16px;
-      padding: 10px;
+      box-sizing: border-box;
     }
     #postButton {
+      margin-top: 10px;
       float: right;
+      background-color: #3D86D1;
+      border-radius: 3px;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 36px;
+      width: 80px;
+      cursor: pointer;
+    }
+    #postButton:hover {
+      background-color: #3575b5;
+    }
+    #postButton:active {
+      background-color: #2c659e;
+    }
+    .clear {
+      clear: both;
     }
     #history {
       width: 100%;
+      margin-top: 30px;
+      border-top: 1px solid #e9e9e9;
     }
-    .request {
+    .complete {
       background-color: #ECECEB;
       color: #666;
       background-image: url(/page_fold.png);
       background-position: right top;
       background-repeat: no-repeat;
-      font-family: monospace;
       float: left;
       width: 50px;
       height: 75px;
       margin-top: 5px;
       margin-right: 5px;
     }
+    h1 {
+      display: inline-block;
+      margin: 0;
+      margin-right: 20px;
+    }
+    #header {
+      margin-top: 1em;
+      margin-bottom: 1.5em;
+    }
     </style>
   </head>
   <body>
     <a href="https://github.com/breck7/noteapi"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
     <div id="container">
-      <h1>NoteAPI</h1>
-      <p>APIs made simple.<a href="https://github.com/breck7/note" style="float: right;">Powered by Note</a></p>
-      <select id="company" placeholder="Company"></select>
-      <select id="example" placeholder="Example"></select>
-      <textarea id="request" placeholder="Note"></textarea>
-      <button id="postButton">Post</button>
-      <pre id="response"></pre>
+      <div id="header"><h1>NoteAPI</h1><span>APIs made simple. Powered by <a href="https://github.com/breck7/note">Note</a></span></div>
+      
+      <div>
+        Company <select id="company" placeholder="Company"></select> Example
+        <select id="example" placeholder="Example"></select>
+      </div>
+      <div id="left_column">
+        <textarea id="request" placeholder="Note"></textarea>
+        <div id="postButton">Post</div>
+      </div>
+      <div id="right_column">
+        <pre id="response"></pre>
+      </div>
+      <div class="clear"></div>
       <div id="history"></div>
   </body>
 </html>
