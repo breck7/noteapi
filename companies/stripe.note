@@ -1,4 +1,5 @@
-charge
+charge_a_card
+ action charge
  api_key sk_test_rl8JvLc9qXYGjxITu0V8Qlm3
  amount 400
  currency usd
@@ -8,10 +9,12 @@ charge
   exp_year 2015
   cvc 123
   name John Doe
-charges
+list_charges
+ action charges
  count 3
  api_key sk_test_rl8JvLc9qXYGjxITu0V8Qlm3
-customer
+create_a_customer
+ action customer
  api_key sk_test_rl8JvLc9qXYGjxITu0V8Qlm3
  email john@test.com
  description Some customer description
@@ -29,16 +32,19 @@ customer
   address_zip 94110
   address_state California
   address_country USA
-customer_delete
+delete_a_customer
+ action customer_delete
  api_key sk_test_rl8JvLc9qXYGjxITu0V8Qlm3
  customer_id cus_0ugDrEKXPJNctX
-plan
+create_a_plan
+ action plan
  api_key sk_test_rl8JvLc9qXYGjxITu0V8Qlm3
  amount 2000
  interval month
  name Amazing Gold Plan
  currency usd
  id gold
-refund
+refund_a_charge
+ action refund
  charge_id ch_0uXZjSsyyxjkSR
  api_key sk_test_rl8JvLc9qXYGjxITu0V8Qlm3

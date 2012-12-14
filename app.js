@@ -32,13 +32,10 @@ app.post('/', function(req, res){
   
   var note = new Note(req.body.note)
   var company = note.company
-  var api = note.api
   if (!companies[company])
     return res.send('error Company ' + company + ' not found.')
-  if (!companies[company][api])
-    return res.send('error API ' + api + ' for ' + company + ' not found.')
-  
-  companies[company][api](note.request, function (error, response) {
+
+  companies[company](note.request, function (error, response) {
     res.send(response.toString())  
   })
   

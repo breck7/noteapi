@@ -1,4 +1,5 @@
-search
+search_tweets
+ action search
  query blue angels
  results_per_page 5
  include_entities true

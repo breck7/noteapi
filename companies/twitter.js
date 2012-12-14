@@ -2,9 +2,10 @@ var request = require('request'),
     Note = require('note'),
     noteapi = require('../noteapi')
 
-var twitter = {}
-
-twitter.search = function (note, callback) {
+var twitter = function (note, callback) {
+  
+  if (note.action != 'search')
+    return callback(false, new Note('error Only search is currently supported'))
   
   note.q = note.query
   delete note.query

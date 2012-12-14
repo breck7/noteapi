@@ -1,2 +1,3 @@
-commits
+list_commits
+ action commits
  repo https://api.github.com/repos/breck7/note

@@ -2,9 +2,8 @@ var request = require('request'),
     Note = require('note'),
     noteapi = require('../noteapi')
 
-var duckduckgo = {}
+var duckduckgo = function (note, callback) {
 
-duckduckgo.search = function (note, callback) {
   note.q = note.query
   delete note.query
   note.format = 'json'

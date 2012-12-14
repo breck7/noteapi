@@ -2,9 +2,10 @@ var request = require('request'),
     Note = require('note'),
     noteapi = require('../noteapi')
 
-var stripe = {}
+var methods = {}
 
-stripe.charge = function (note, callback) {
+
+methods.charge = function (note, callback) {
   
   var get = noteapi.noteToGet(note)
   var api_key = note.api_key
@@ -19,7 +20,7 @@ stripe.charge = function (note, callback) {
   })
 }
 
-stripe.charges = function (note, callback) {
+methods.charges = function (note, callback) {
   
   var get = noteapi.noteToGet(note)
   var api_key = note.api_key
@@ -32,7 +33,7 @@ stripe.charges = function (note, callback) {
   })
 }
 
-stripe.customer = function (note, callback) {
+methods.customer = function (note, callback) {
   
 
   var api_key = note.api_key
@@ -46,7 +47,7 @@ stripe.customer = function (note, callback) {
   })
 }
 
-stripe.customer_delete = function (note, callback) {
+methods.customer_delete = function (note, callback) {
 
   var api_key = note.api_key
   delete note.api_key
@@ -58,7 +59,7 @@ stripe.customer_delete = function (note, callback) {
   })
 }
 
-stripe.plan = function (note, callback) {
+methods.plan = function (note, callback) {
   
   var api_key = note.api_key
   delete note.api_key
@@ -71,7 +72,7 @@ stripe.plan = function (note, callback) {
   
 }
 
-stripe.refund = function (note, callback) {
+methods.refund = function (note, callback) {
   
   var api_key = note.api_key
   delete note.api_key
@@ -83,5 +84,18 @@ stripe.refund = function (note, callback) {
   })
   
 }
+
+
+var stripe = function (note, callback) {
+  
+  if (!methods[note.action])
+    return callback(false, new Note('error Method not currently supported'))
+
+  var action = note.action
+  delete note.action
+  methods[action](note, callback)
+  
+}
+
 
 module.exports = stripe

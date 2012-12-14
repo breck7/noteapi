@@ -11,7 +11,7 @@
       var request = requests[id]
       $('#company').val(request.company)
       $('#company').trigger('change')
-      $('#api').val(request.api)
+      $('#example').val(request.example)
       $('#request').val(request.request)
       $('#response').text(request.response)
     }
@@ -31,26 +31,25 @@
       
       $('#company').on('change', function () {
         var company = $(this).val()
-        $('#api').html('')
+        $('#example').html('')
         
-        for (var api in companies[company].names()) {
-          var option = '<option value="' + api + '">' + api + '</option>'
-          $('#api').append(option)
+        for (var example in companies[company].names()) {
+          var option = '<option value="' + example + '">' + example + '</option>'
+          $('#example').append(option)
         }
-        $('#api').trigger('change')
+        $('#example').trigger('change')
       })
       
-      $('#api').on('change', function () {
+      $('#example').on('change', function () {
         var company = $('#company').val()
-        var api = $(this).val()
-        $('#request').val(companies[company][api].toString())
+        var example = $(this).val()
+        $('#request').val(companies[company][example].toString())
       })
       
       
       $('#postButton').on('click', function () {
         var request = new Note()
         request.company = $('#company').val()
-        request.api = $('#api').val()
         request.request = new Note($('#request').val())
         $.post('/', { note : request.toString()}, function (data) {
           request.response = new Note(data)
@@ -84,7 +83,7 @@
       margin: 0;
       padding: 5px;
     }
-    #company, #api {
+    #company, #example {
       width: 100%;
       height: 24px;
       border: 1px solid #ccc;
@@ -127,7 +126,7 @@
       <h1>NoteAPI</h1>
       <p>APIs made simple.<a href="https://github.com/breck7/note" style="float: right;">Powered by Note</a></p>
       <select id="company" placeholder="Company"></select>
-      <select id="api" placeholder="API"></select>
+      <select id="example" placeholder="Example"></select>
       <textarea id="request" placeholder="Note"></textarea>
       <button id="postButton">Post</button>
       <pre id="response"></pre>

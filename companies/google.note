@@ -1,2 +1,3 @@
-images
- query hi
+search_images
+ action image_search
+ query cats
