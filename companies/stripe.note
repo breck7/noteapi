@@ -8,6 +8,37 @@ charge
   exp_year 2015
   cvc 123
   name John Doe
+charges
+ count 3
+ api_key sk_test_rl8JvLc9qXYGjxITu0V8Qlm3
+customer
+ api_key sk_test_rl8JvLc9qXYGjxITu0V8Qlm3
+ email john@test.com
+ description Some customer description
+ account_balance 0
+ plan pro
+ quantity 2
+ card
+  number 4242424242424242
+  exp_month 05
+  exp_year 2015
+  cvc 123
+  name John Doe
+  address_line1 123 Main Street
+  address_line2 Apartment #2
+  address_zip 94110
+  address_state California
+  address_country USA
+customer_delete
+ api_key sk_test_rl8JvLc9qXYGjxITu0V8Qlm3
+ customer_id cus_0ugDrEKXPJNctX
+plan
+ api_key sk_test_rl8JvLc9qXYGjxITu0V8Qlm3
+ amount 2000
+ interval month
+ name Amazing Gold Plan
+ currency usd
+ id gold
 refund
  charge_id ch_0uXZjSsyyxjkSR
  api_key sk_test_rl8JvLc9qXYGjxITu0V8Qlm3
