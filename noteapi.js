@@ -6,6 +6,8 @@ noteapi.noteToGet = function (note) {
   var string = ''
   var first = ''
   for (var name in note.names()) {
+    if (!note[name])
+      continue
     string += first + encodeURIComponent(name) + '=' + encodeURIComponent(note[name])
     first = '&'
   }
