@@ -1,24 +1,10 @@
 NoteAPI
 =======
 
-Live Demo
----------
+**Try it now at http://noteapi.com**
 
-http://noteapi.com
+NoteAPI demonstrates how web APIs are simpler if they simply receive hash tables and respond with hash tables.
 
-What is a NoteAPI?
-------------------
+Note is a concise way to encode hash tables. NoteAPI uses Note to provide example interfaces to a few popular web apis.
 
-A NoteAPI is a simple web service that receives a Note and responds with a Note.
-
-Goal
-----
-Make APIs so simple they don't need documentation.
-
-Problem
--------
-Working with APIs is painful. Note makes it a lot easier. NoteAPI is a set of libraries that create Note interfaces to existing JSON APIs.
-
-NoteAPI gives you Note interfaces to existing APIs that don't have Note interfaces yet.
-
-
+We believe APIs could be so simple you would barely need documentation, and this is a first step to get there.
