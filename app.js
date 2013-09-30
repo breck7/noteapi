@@ -29,6 +29,9 @@ app.get('/companies', function (req, res) {
 })
 
 app.post('/', function(req, res){
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
   
   var note = new Note(req.body.note)
   var company = note.company
